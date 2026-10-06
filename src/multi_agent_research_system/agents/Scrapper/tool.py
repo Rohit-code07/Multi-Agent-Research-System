@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from langchain.tools import tool
 
-from multi_agent_research_system.scehmas.schemas import QualityCheckResponse, ScrapeResponse, ScrapedDocument
+from multi_agent_research_system.agents.scehmas.schemas import QualityCheckResponse, ScrapeResponse, ScrapedDocument
 
 
 @tool

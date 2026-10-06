@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from multi_agent_research_system.scehmas.schemas import (
+from multi_agent_research_system.agents.scehmas.schemas import (
     ResearchPlan,
     SearchResponse,
     QualityCheckResponse,

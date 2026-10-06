@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 from rich import print
 
-from multi_agent_research_system.scehmas.schemas import ResearchPlan,SearchResult
+from multi_agent_research_system.agents.scehmas.schemas import ResearchPlan,SearchResult
 load_dotenv()
 
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))

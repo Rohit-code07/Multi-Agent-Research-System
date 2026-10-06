@@ -1,4 +1,4 @@
-from multi_agent_research_system.Graph.research_graph import build_research_graph
+from multi_agent_research_system.agents.Graph.research_graph import build_research_graph
 
 
 graph = build_research_graph()

@@ -2,7 +2,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 
 from .prompt import claim_prompt_template
-from multi_agent_research_system.scehmas.schemas import (
+from multi_agent_research_system.agents.scehmas.schemas import (
     ReaderResponse,
     ClaimResponse
 )

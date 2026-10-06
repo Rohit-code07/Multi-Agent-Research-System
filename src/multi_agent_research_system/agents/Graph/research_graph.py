@@ -47,7 +47,7 @@ from multi_agent_research_system.agents.mapped_evidence.embedding_search import 
     build_claim_evidence_mapping
 )
 
-from multi_agent_research_system.scehmas.schemas import (
+from multi_agent_research_system.agents.scehmas.schemas import (
     ResearchPlan,
     ResearchQuestion
 )

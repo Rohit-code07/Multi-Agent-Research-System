@@ -3,7 +3,7 @@ import json
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
-from multi_agent_research_system.scehmas.schemas import (
+from multi_agent_research_system.agents.scehmas.schemas import (
     SearchResponse,
     SourceQuality,
     QualityCheckedSource,

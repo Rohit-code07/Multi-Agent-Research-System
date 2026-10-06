@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 from .prompt import synthesizer_prompt_template
 
-from multi_agent_research_system.scehmas.schemas import (
+from multi_agent_research_system.agents.scehmas.schemas import (
     ClaimResponse,
     EvidenceResponse,
     SynthesisResponse,

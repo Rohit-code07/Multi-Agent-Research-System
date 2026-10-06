@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-from multi_agent_research_system.scehmas.schemas import ClaimEvidence
+from multi_agent_research_system.agents.scehmas.schemas import ClaimEvidence
 model = SentenceTransformer("all-mpnet-base-v2")
 
 
