@@ -1,4 +1,4 @@
-from agents import build_search_agent, build_reader_agent,writer_chain, critic_prompt
+from multi_agent_research_system.agents.search.agents import build_search_agent, build_reader_agent,writer_chain, critic_prompt
 
 def run_search_pipeline(topic: str)-> dict:
   state = {}

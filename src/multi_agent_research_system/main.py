@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 # Add the parent directory to sys.path so we can import the existing pipeline
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from api.schemas import ResearchRequest, ResearchResponse
+from schemas.schemas import ResearchRequest, ResearchResponse
 from pipeline import run_search_pipeline
 
 # Monkey-patch sys.stdout to prevent UnicodeEncodeError on Windows during prints in pipeline.py
