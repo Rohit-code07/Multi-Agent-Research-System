@@ -7,7 +7,7 @@ The project features a Python-based FastAPI backend powered by LangChain and mul
 ## 🏗️ System Architecture
 
 The core of the system is a multi-stage AI pipeline where specialized agents sequentially process information to produce a high-quality research report.
-<img width="1536" height="1024" alt="ChatGPT Image Sep 24, 2026, 06_05_03 AM" src="https://github.com/user-attachments/assets/c5737380-6a09-4d90-8790-2d509bea53fb" />
+<img width="645" height="1981" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/c05a44f9-4cda-41c6-bbc3-b2fa5d18ef42" />
 
 
 ### Component Breakdown
