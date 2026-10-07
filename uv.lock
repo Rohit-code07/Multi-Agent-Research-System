@@ -818,7 +818,7 @@ wheels = [
 [[package]]
 name = "multi-agent-research-system"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "langchain-google-genai" },
     { name = "langchain-groq" },
