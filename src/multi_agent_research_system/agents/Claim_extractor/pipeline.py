@@ -1,4 +1,3 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 
 from .prompt import claim_prompt_template
@@ -9,8 +8,10 @@ from multi_agent_research_system.agents.scehmas.schemas import (
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+from langchain_ollama import ChatOllama
+
+llm = ChatOllama(
+    model="qwen3:8b",
     temperature=0
 )
 

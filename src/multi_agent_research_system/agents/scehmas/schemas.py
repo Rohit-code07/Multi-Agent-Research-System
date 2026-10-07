@@ -36,7 +36,12 @@ class QualityCheckedSource(BaseModel):
 class QualityCheckResponse(BaseModel):
     sources: list[QualityCheckedSource]
 
-
+class SourceEvaluation(BaseModel):
+    relevance: int = Field(ge=1, le=5)
+    credibility: int = Field(ge=1, le=5)
+    quality_score: int = Field(ge=1, le=5)
+    reason: str
+    
 class ScrapedDocument(BaseModel):
     source_id: str
     url: str

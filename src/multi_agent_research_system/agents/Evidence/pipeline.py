@@ -1,19 +1,19 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
+from langchain_ollama import ChatOllama
 
 from .prompt import evidence_prompt_template
-
+load_dotenv()
 from multi_agent_research_system.agents.scehmas.schemas import (
     ClaimResponse,
     ReaderResponse,
     EvidenceResponse
 )
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+
+llm = ChatOllama(
+    model="qwen3:8b",
     temperature=0
 )
-
 
 def build_evidence_extractor(
     claims: ClaimResponse,

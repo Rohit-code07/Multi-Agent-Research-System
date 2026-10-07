@@ -1,42 +1,53 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from dotenv import load_dotenv
-
-from .prompt import reader_prompt_template
 
 from multi_agent_research_system.agents.scehmas.schemas import (
     ScrapeResponse,
-    ReaderResponse
+    ReaderResponse,
+    Passage,
 )
+
+from .prompt import reader_prompt_template
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+llm = ChatOllama(
+    model="qwen3:8b",
     temperature=0
 )
 
-
 def build_reader_pipeline(
-
-    query: ScrapeResponse
+    question: str,
+    scraped_data: ScrapeResponse
 ) -> ReaderResponse:
-
-    structured_llm = llm.with_structured_output(
-        ReaderResponse
-    )
 
     passages = []
 
-    for document in query.documents:
+    for document in scraped_data.documents:
 
         prompt = reader_prompt_template.invoke({
+            "question": question,
+            "source_id": document.source_id,
             "url": document.url,
-            "content": document.content
+            "content": document.content[:8000],
         })
 
-        response = structured_llm.invoke(prompt)
+        response = llm.invoke(prompt)
 
-        passages.extend(response.passages)
+        # LLM output ko plain text passage maan rahe hain
+        text = response.content.strip()
+
+        if not text:
+            continue
+
+        passages.append(
+            Passage(
+                passage_id=f"p{len(passages) + 1}",
+                source_id=document.source_id,
+                text=text,
+                relevance_score=1.0
+            )
+        )
 
     return ReaderResponse(
         passages=passages

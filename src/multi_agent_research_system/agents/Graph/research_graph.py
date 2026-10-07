@@ -71,15 +71,13 @@ def planner_node(state):
 # =========================================================
 
 def search_node(state):
-
-    search_results = web_search.invoke(
-        state["plan"]
-    )
+    search_results = web_search.invoke({
+        "query": state["plan"]
+    })
 
     return {
         "search_results": search_results
     }
-
 
 # =========================================================
 # SOURCE QUALITY
@@ -99,9 +97,7 @@ def source_node(state):
 # =========================================================
 # SCRAPER
 # =========================================================
-
 def scraper_node(state):
-
     scraped_data = build_scraper_agent(
         state["quality_results"]
     )
@@ -109,7 +105,6 @@ def scraper_node(state):
     return {
         "scraped_data": scraped_data
     }
-
 
 # =========================================================
 # READER

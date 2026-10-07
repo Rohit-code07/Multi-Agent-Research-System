@@ -1,15 +1,15 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from .prompts import prompt_template
 from dotenv import load_dotenv
 from multi_agent_research_system.agents.scehmas.schemas import ResearchPlan
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+
+llm = ChatOllama(
+    model="qwen3:8b",
     temperature=0
 )
-
 
 
 

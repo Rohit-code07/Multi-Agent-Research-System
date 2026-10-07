@@ -4,24 +4,33 @@ from dotenv import load_dotenv
 import os
 from rich import print
 
-from multi_agent_research_system.agents.scehmas.schemas import ResearchPlan,SearchResult
+from multi_agent_research_system.agents.scehmas.schemas import ResearchPlan, SearchResponse,SearchResult
 load_dotenv()
 
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 @tool
-def web_search(query: ResearchPlan) -> list[SearchResult]:
-    """Search the web for recent and reliable information on a topic. Returns URL, title, and relevant information."""
+def web_search(query: ResearchPlan) -> SearchResponse:
+    """Search the web for recent and reliable information."""
+
     results = []
+
     for question in query.questions:
-        tavily_result = tavily.search(query=question.question, max_results=5)
+        tavily_result = tavily.search(
+            query=question.question,
+            max_results=5
+        )
+
         for item in tavily_result.get("results", []):
             results.append(
                 SearchResult(
                     title=item.get("title", ""),
                     url=item.get("url", ""),
-                    snippet=item.get("content", ""),
+                    snippet=item.get("content", "")
                 )
             )
-    return results
 
+    return SearchResponse(
+        query=query.questions[0].question,
+        results=results
+    )

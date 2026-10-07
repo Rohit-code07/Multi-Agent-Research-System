@@ -1,24 +1,23 @@
 from langchain_core.prompts import ChatPromptTemplate
 
+
 reader_prompt_template = ChatPromptTemplate.from_messages([
     (
         "system",
         """
 You are a research reader agent.
 
-Your task is to read the scraped webpage content and extract only the
-passages that are useful for answering the given research question.
+Read the webpage content and extract ONLY the information
+that is directly relevant to the research question.
+
+Return concise relevant passages.
 
 Rules:
-- Do not summarize the entire webpage.
-- Extract factual and relevant passages from the provided content.
-- Preserve the original meaning of the text.
-- Do not invent or add information.
-- Ignore navigation, advertisements, menus, cookie notices, and unrelated content.
-- Prefer passages containing concrete facts, findings, statistics, results,
-  explanations, or evidence.
-- Assign a relevance score from 0 to 1.
-- Return structured output matching the provided schema.
+- Do not invent information.
+- Do not explain your reasoning.
+- Do not summarize unrelated content.
+- Return only useful factual passages.
+- If nothing is relevant, return: NO_RELEVANT_CONTENT
 """
     ),
     (
@@ -27,10 +26,13 @@ Rules:
 Research Question:
 {question}
 
-Source URL:
+Source ID:
+{source_id}
+
+URL:
 {url}
 
-Scraped Content:
+Webpage Content:
 {content}
 """
     )
