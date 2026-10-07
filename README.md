@@ -1,113 +1,109 @@
-# INQUIRA - Multi-Agent Research System
+# INQUIRA
 
-INQUIRA is a multi-agent AI system designed to autonomously research a given topic by performing web searches, scraping relevant web pages, analyzing the content, drafting a detailed research report, and critically reviewing the findings for factual accuracy and coherence. 
+### Multi-Agent Research & Evidence Verification System
 
-The project features a Python-based FastAPI backend powered by LangChain and multiple LLMs (Groq and Google Gemini), paired with a modern React/Vite frontend.
+INQUIRA is a **LangGraph-based multi-agent research system** that transforms complex user queries into structured, evidence-backed research reports.
 
-## 🏗️ System Architecture
+Instead of using a single LLM call, INQUIRA divides the research process into specialized agents for **planning, search, source evaluation, reading, claim extraction, evidence mapping, verification, synthesis, and critique**.
 
-The core of the system is a multi-stage AI pipeline where specialized agents sequentially process information to produce a high-quality research report.
-<img width="645" height="1981" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/c05a44f9-4cda-41c6-bbc3-b2fa5d18ef42" />
+---
 
+## Architecture
 
-### Component Breakdown
+<img width="645" height="1981" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/c6aa1ec8-e1be-4d9a-8771-97fe3c697fdc" />
 
-1. **Search Agent**:
-   - **Model**: Groq (`openai/gpt-oss-20b`)
-   - **Role**: Takes the user's research topic and uses the **Tavily API** to conduct a comprehensive web search. It returns the most relevant URLs, titles, and content snippets.
-   - **Tool**: `web_search` (TavilyClient)
+## Key Features
 
-2. **Reader Agent**:
-   - **Model**: Google Gemini (`gemini-2.5-flash`)
-   - **Role**: Analyzes the search results to identify the most authoritative and relevant URL. It then scrapes the full text content of that URL for deeper context.
-   - **Tool**: `web_scraper` (Requests + BeautifulSoup)
+* **Multi-Agent Research Pipeline** using LangGraph
+* **Query Decomposition** for complex research questions
+* **Source Quality Evaluation** based on relevance and credibility
+* **Web Scraping & Relevant Passage Extraction**
+* **Claim ↔ Evidence Mapping** using semantic similarity
+* **Claim Verification**: Supported, Partially Supported, Contradicted, or Insufficient Evidence
+* **Critic Agent** for research-quality evaluation
+* **Targeted Research Loop** for missing evidence
+* **Local LLM Support** through Ollama
 
-3. **Writer Agent**:
-   - **Model**: Google Gemini (`gemini-2.5-flash`)
-   - **Role**: Synthesizes the search snippets and the deeply scraped content to write a structured, comprehensive, and professional research report with clear headings and citations.
+---
 
-4. **Critic Agent**:
-   - **Model**: Google Gemini (`gemini-2.5-flash`)
-   - **Role**: Acts as a fact-checker and reviewer. It evaluates the drafted report for unsupported claims, contradictions, weak sources, and missing information, providing actionable critical feedback.
+## Tech Stack
 
-5. **Backend API** (`api/main.py`):
-   - Built with **FastAPI**.
-   - Exposes the `/api/research` endpoint to trigger the agent pipeline synchronously and return the final state (including the report and critic feedback) to the client.
-
-6. **Frontend** (`frontend/frontend/`):
-   - A modern web interface built with **React**, **Vite**, **Tailwind CSS**, and **TanStack**.
-   - Handles user input, displays the research progress, and renders the final markdown report.
-
-## 📂 Project Structure
-
-```
-.
-├── agents.py             # Defines the LangChain agents and their prompts
-├── pipeline.py           # Orchestrates the sequential execution of all agents
-├── tool.py               # Defines the custom tools (web_search and web_scraper)
-├── pyproject.toml        # Backend Python project configuration
-├── requirements.txt      # Python dependencies
-├── .env                  # Environment variables (API keys)
-├── api/                  # FastAPI Backend application
-│   ├── main.py           # API endpoints and server configuration
-│   └── schemas.py        # Pydantic models for API request/response validation
-└── frontend/             # Frontend React Application
-    └── frontend/
-        ├── package.json  # Node.js dependencies
-        ├── vite.config.ts# Vite configuration
-        └── src/          # React components and pages
+```text
+Python
+LangGraph
+LangChain
+Ollama
+Qwen3 8B
+Tavily
+BeautifulSoup
+Sentence Transformers
+Pydantic
+FastAPI
 ```
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
-- **Python 3.14+**
-- **Node.js** (for running the frontend)
-- API Keys for:
-  - Tavily Search API (`TAVILY_API_KEY`)
-  - Groq API (`GROQ_API_KEY`)
-  - Google Gemini API (`GOOGLE_API_KEY`)
+## Installation
 
-### 1. Setup Environment Variables
-Create a `.env` file in the root directory and add your API keys:
+```bash
+git clone https://github.com/Rohit-code07/INQUIRA.git
+cd INQUIRA
+
+uv venv
+uv sync
+```
+
+Install Ollama model:
+
+```bash
+ollama pull qwen3:8b
+```
+
+Add your Tavily key to `.env`:
+
 ```env
-TAVILY_API_KEY="your_tavily_api_key_here"
-GROQ_API_KEY="your_groq_api_key_here"
-GOOGLE_API_KEY="your_google_api_key_here"
+TAVILY_API_KEY=your_api_key
 ```
 
-### 2. Backend Setup
-The backend dependencies are managed via `uv` or `pip`.
+---
 
-```bash
-# Create a virtual environment and install dependencies
-python -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-pip install -r requirements.txt
+## Example
+
+**Input**
+
+```text
+What are the major impacts of artificial intelligence on software development?
 ```
 
-Start the FastAPI server:
-```bash
-uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
-```
-*Note: You can also run the pipeline in CLI mode without the server by running `python pipeline.py`.*
+**Output**
 
-### 3. Frontend Setup
-Navigate to the frontend directory and install the Node modules.
-
-```bash
-cd frontend/frontend
-npm install
-```
-
-Start the Vite development server:
-```bash
-npm run dev
+```text
+Research Plan
+    ↓
+Verified Claims
+    ↓
+Supporting Evidence
+    ↓
+Synthesized Findings
+    ↓
+Final Research Report
 ```
 
-## 🛠️ Tech Stack
-- **AI / LLM Framework**: LangChain, LangGraph
-- **LLM Providers**: Groq, Google Generative AI (Gemini)
-- **Web Search/Scraping**: Tavily API, BeautifulSoup, Requests
-- **Backend API**: FastAPI, Uvicorn, Pydantic
-- **Frontend**: React, Vite, Tailwind CSS, Radix UI, TanStack Router
+---
+
+## Project Goal
+
+INQUIRA focuses on making AI-powered research more **structured, traceable, and evidence-driven** by connecting:
+
+```text
+Source → Passage → Claim → Evidence → Verification → Finding
+```
+
+---
+
+## Author
+
+**Rohit Verma**
+
+GitHub: https://github.com/Rohit-code07
+
