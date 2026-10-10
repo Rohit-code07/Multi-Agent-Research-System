@@ -22,10 +22,7 @@ const PDF_MARGIN_X = 64;
 const PDF_TOP = 774;
 const PDF_BOTTOM = 66;
 
-export function downloadResearchReport(
-  data: ResearchReportExport,
-  format: ReportExportFormat,
-) {
+export function downloadResearchReport(data: ResearchReportExport, format: ReportExportFormat) {
   const content = createResearchReport(data, format);
   const extension = format === "markdown" ? "md" : format;
   const mimeType =
@@ -208,9 +205,7 @@ function createPdfReport(data: ResearchReportExport) {
 function getReportSections(data: ResearchReportExport): ReportSection[] {
   const analyst = data.agents.find((agent) => agent.id === "analyst");
   const critic = data.agents.find((agent) => agent.id === "critic");
-  const sections: ReportSection[] = [
-    { title: "Executive Summary", agent: data.report },
-  ];
+  const sections: ReportSection[] = [{ title: "Executive Summary", agent: data.report }];
 
   if (data.report.findings.length > 0) {
     sections.push({
@@ -249,10 +244,7 @@ function normalizePdfText(value: string) {
 }
 
 function pdfText(value: string) {
-  return normalizePdfText(value)
-    .replace(/\\/g, "\\\\")
-    .replace(/\(/g, "\\(")
-    .replace(/\)/g, "\\)");
+  return normalizePdfText(value).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
 }
 
 function wrapText(value: string, maxCharacters: number) {

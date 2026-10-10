@@ -3,12 +3,24 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  BadgeCheck,
   BookOpenText,
+  Brain,
   ChartNoAxesCombined,
   FileSearch,
   FileText,
+  GitBranch,
+  Globe,
+  LayersIcon,
+  Link2,
+  ListChecks,
+  Network,
+  RefreshCw,
   ScanSearch,
+  SearchCheck,
   ShieldCheck,
+  Sparkles,
+  Star,
 } from "lucide-react";
 import researchHead from "@/assets/research-head.png";
 
@@ -27,53 +39,110 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:description",
-        content:
-          "Search, analyze, verify, and synthesize information into structured research.",
+        content: "Search, analyze, verify, and synthesize information into structured research.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
-});
+} as any);
 
 const agents = [
   {
     number: "01",
+    name: "Planner Agent",
+    description: "Breaks down the research question into focused research objectives.",
+    tag: "PLANNING",
+    icon: Brain,
+  },
+  {
+    number: "02",
     name: "Search Agent",
-    description: "Finds relevant sources across the research landscape.",
+    description: "Discovers relevant web sources to answer the research question.",
     tag: "DISCOVERY",
     icon: ScanSearch,
   },
   {
-    number: "02",
+    number: "03",
+    name: "Source Quality Agent",
+    description: "Evaluates source relevance, credibility, and overall quality.",
+    tag: "SOURCE EVALUATION",
+    icon: ShieldCheck,
+  },
+  {
+    number: "04",
+    name: "Scraper Agent",
+    description: "Extracts webpage content for deeper research and analysis.",
+    tag: "DATA COLLECTION",
+    icon: Globe,
+  },
+  {
+    number: "05",
     name: "Reader Agent",
-    description: "Extracts useful information and preserves its context.",
+    description: "Identifies relevant passages and preserves their source context.",
     tag: "EXTRACTION",
     icon: BookOpenText,
   },
   {
-    number: "03",
-    name: "Analyst Agent",
-    description: "Compares evidence and brings meaningful patterns into view.",
-    tag: "ANALYSIS",
-    icon: ChartNoAxesCombined,
+    number: "06",
+    name: "Claim Extractor",
+    description: "Extracts factual claims from the collected research material.",
+    tag: "CLAIM EXTRACTION",
+    icon: ListChecks,
   },
   {
-    number: "04",
-    name: "Critic Agent",
-    description: "Checks consistency, credibility, and source quality.",
+    number: "07",
+    name: "Evidence Extractor",
+    description: "Identifies evidence relevant to the claims found during research.",
+    tag: "EVIDENCE EXTRACTION",
+    icon: SearchCheck,
+  },
+  {
+    number: "08",
+    name: "Claim-Evidence Mapper",
+    description: "Connects research claims with semantically relevant evidence.",
+    tag: "EVIDENCE MAPPING",
+    icon: GitBranch,
+  },
+  {
+    number: "09",
+    name: "Verification Agent",
+    description: "Checks whether claims are supported, contradicted, or lack sufficient evidence.",
     tag: "VERIFICATION",
+    icon: BadgeCheck,
+  },
+  {
+    number: "10",
+    name: "Synthesis Agent",
+    description: "Combines verified claims and evidence into coherent research findings.",
+    tag: "SYNTHESIS",
+    icon: Network,
+  },
+  {
+    number: "11",
+    name: "Critic Agent",
+    description: "Evaluates factuality, citation accuracy, evidence coverage, and source quality.",
+    tag: "QUALITY REVIEW",
     icon: ShieldCheck,
   },
   {
-    number: "05",
+    number: "12",
+    name: "Targeted Research Agent",
+    description: "Investigates missing evidence when the research requires further verification.",
+    tag: "ITERATIVE RESEARCH",
+    icon: RefreshCw,
+  },
+  {
+    number: "13",
     name: "Writer Agent",
-    description: "Synthesizes the findings into a structured final report.",
-    tag: "SYNTHESIS",
+    description: "Transforms the synthesized findings into a structured final research report.",
+    tag: "REPORT GENERATION",
     icon: FileText,
   },
 ];
+
+
 
 function Index() {
   return (
@@ -81,11 +150,14 @@ function Index() {
       <div className="research-shell">
         <header className="research-header">
           <a className="research-wordmark" href="#top" aria-label="INQUIRA home">
-            <span className="research-mark" aria-hidden="true">R</span>
+            <span className="research-mark" aria-hidden="true">
+              R
+            </span>
             <span>INQUIRA</span>
           </a>
           <nav className="research-nav" aria-label="Main navigation">
             <a href="#workflow">THE METHOD</a>
+            <a href="#pipeline">PIPELINE</a>
             <a className="nav-cta" href="#workflow">
               EXPLORE THE PROCESS <ArrowUpRight aria-hidden="true" />
             </a>
@@ -147,8 +219,8 @@ function Index() {
               </h2>
             </div>
             <p className="workflow-intro">
-              Each specialist adds a layer of rigor, carrying scattered information toward a
-              clear, traceable answer.
+              Each specialist adds a layer of rigor, carrying scattered information toward a clear,
+              traceable answer.
             </p>
           </div>
 
@@ -158,7 +230,9 @@ function Index() {
               return (
                 <article className="agent-card" key={agent.number}>
                   <div className="agent-topline">
-                    <span className="agent-icon"><Icon aria-hidden="true" /></span>
+                    <span className="agent-icon">
+                      <Icon aria-hidden="true" />
+                    </span>
                     <span className="agent-number">{agent.number}</span>
                   </div>
                   <div>
@@ -173,15 +247,16 @@ function Index() {
 
           <div className="workflow-meta">
             <span>Sources in. Evidence through.</span>
-            <span><FileSearch aria-hidden="true" /> Traceable at every step.</span>
+            <span>
+              <FileSearch aria-hidden="true" /> Traceable at every step.
+            </span>
           </div>
         </div>
       </section>
 
-      <footer className="research-shell research-footer">
-        <span className="footer-mark">INQUIRA</span>
-        <span>From information to insight.</span>
-      </footer>
+     
+
     </main>
   );
 }
+

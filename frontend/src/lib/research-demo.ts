@@ -79,9 +79,18 @@ export const demoAgents: AgentDefinition[] = [
       "The reference set describes heat as a product of both physical surroundings and human exposure. These short notes summarize the demonstration material; they are not quoted passages.",
     ],
     findings: [
-      { text: "Dark surfaces and limited vegetation can intensify neighborhood heat.", sources: ["source-1", "source-2"] },
-      { text: "Extreme heat is a health risk, with the burden shaped by who is exposed and who can access protection.", sources: ["source-3"] },
-      { text: "Cooling interventions can be considered at both the neighborhood and building scale.", sources: ["source-1"] },
+      {
+        text: "Dark surfaces and limited vegetation can intensify neighborhood heat.",
+        sources: ["source-1", "source-2"],
+      },
+      {
+        text: "Extreme heat is a health risk, with the burden shaped by who is exposed and who can access protection.",
+        sources: ["source-3"],
+      },
+      {
+        text: "Cooling interventions can be considered at both the neighborhood and building scale.",
+        sources: ["source-1"],
+      },
     ],
     sourceIds: ["source-1", "source-2", "source-3"],
   },
@@ -97,9 +106,18 @@ export const demoAgents: AgentDefinition[] = [
       "The evidence points toward a combined approach: target the hottest places, choose interventions suited to each block, and prioritize the people most at risk.",
     ],
     findings: [
-      { text: "Measure heat and exposure locally before deciding where resources go.", sources: ["source-2", "source-3"] },
-      { text: "Pair neighborhood-scale greening with reflective or shaded built surfaces.", sources: ["source-1", "source-2"] },
-      { text: "Assess benefits by health and access, not just area treated.", sources: ["source-3"] },
+      {
+        text: "Measure heat and exposure locally before deciding where resources go.",
+        sources: ["source-2", "source-3"],
+      },
+      {
+        text: "Pair neighborhood-scale greening with reflective or shaded built surfaces.",
+        sources: ["source-1", "source-2"],
+      },
+      {
+        text: "Assess benefits by health and access, not just area treated.",
+        sources: ["source-3"],
+      },
     ],
     sourceIds: ["source-1", "source-2", "source-3"],
   },
@@ -115,9 +133,18 @@ export const demoAgents: AgentDefinition[] = [
       "The sources include public agencies and an international health authority. This is a compact, illustrative sample—not a systematic review—and it does not establish which intervention would work best in a particular city.",
     ],
     findings: [
-      { text: "Source publishers and source types are identifiable.", sources: ["source-1", "source-2", "source-3"] },
-      { text: "Recommendations require local temperature, health, and access data to prioritize fairly.", sources: ["source-2", "source-3"] },
-      { text: "This demonstration has no live retrieval or independent fact-checking.", sources: [] },
+      {
+        text: "Source publishers and source types are identifiable.",
+        sources: ["source-1", "source-2", "source-3"],
+      },
+      {
+        text: "Recommendations require local temperature, health, and access data to prioritize fairly.",
+        sources: ["source-2", "source-3"],
+      },
+      {
+        text: "This demonstration has no live retrieval or independent fact-checking.",
+        sources: [],
+      },
     ],
     sourceIds: ["source-1", "source-2", "source-3"],
   },
@@ -133,9 +160,18 @@ export const demoAgents: AgentDefinition[] = [
       "Cities can reduce heat exposure by combining place-based cooling measures with health-led prioritization. Begin with a local picture of heat and vulnerability, then direct investment to the neighborhoods where both are greatest.",
     ],
     findings: [
-      { text: "Map hot spots alongside indicators of health risk and access to cooling.", sources: ["source-2", "source-3"] },
-      { text: "Mix shade, vegetation, and cooler surfaces to respond to neighborhood conditions.", sources: ["source-1", "source-2"] },
-      { text: "Track who benefits and revise plans as local evidence improves.", sources: ["source-3"] },
+      {
+        text: "Map hot spots alongside indicators of health risk and access to cooling.",
+        sources: ["source-2", "source-3"],
+      },
+      {
+        text: "Mix shade, vegetation, and cooler surfaces to respond to neighborhood conditions.",
+        sources: ["source-1", "source-2"],
+      },
+      {
+        text: "Track who benefits and revise plans as local evidence improves.",
+        sources: ["source-3"],
+      },
     ],
     sourceIds: ["source-1", "source-2", "source-3"],
   },
