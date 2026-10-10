@@ -1,8 +1,12 @@
-# 🔎 INQUIRA
+#  INQUIRA
 
 ### Multi-Agent Research & Evidence Verification System
 
 **From complex questions to evidence-backed research.**
+
+
+<img width="1890" height="862" alt="Screenshot 2026-10-10 175333" src="https://github.com/user-attachments/assets/a09d8a8b-af81-48d3-8012-cb4b953bb93e" />
+
 
 INQUIRA is a LangGraph-based multi-agent research system that transforms complex user queries into structured, traceable, and evidence-backed research reports.
 
